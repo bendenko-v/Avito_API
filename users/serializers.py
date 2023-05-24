@@ -60,6 +60,10 @@ class UserCreateSerializer(serializers.ModelSerializer):
 class UserUpdateSerializer(serializers.ModelSerializer):
     location = LocationSerializer(required=False, many=True)
     password = serializers.CharField(write_only=True, max_length=120)
+    email = serializers.EmailField(
+        allow_null=False,
+        validators=[NotInForbiddenDomainValidator(['rambler.ru'])],
+    )
 
     class Meta:
         model = User
