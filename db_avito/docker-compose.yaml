@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: avito
+    image: postgres:14.7-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: avito
+      POSTGRES_USER: avito_user
+      POSTGRES_PASSWORD: avito_pass
+    restart: always
+    ports:
+      - "5433:5432"
+
+volumes:
+  postgres_data:

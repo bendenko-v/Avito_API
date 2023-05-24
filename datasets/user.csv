@@ -1,0 +1,4 @@
+id,first_name,last_name,username,password,role,age,email,birth_date,location_id
+1,Vadim,Bendenko,smopuim,smopuim,member,37,member@email.com,1999-01-01,3
+2,Moder,Moderov,moderator,moderator,moderator,24,moderator@email.com,1999-02-02,2
+3,Admin,Adminov,adminnn,adminnn,admin,29,admin@email.com,2000-03-03,1
