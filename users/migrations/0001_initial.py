@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
                 ('last_name', models.CharField(max_length=120)),
                 ('username', models.CharField(max_length=120, unique=True)),
                 ('password', models.CharField(max_length=120)),
-                ('email', models.EmailField(max_length=254, unique=True, validators=[users.models.validate_email_domain])),
+                ('email', models.EmailField(max_length=254, unique=True)),
                 ('role', models.CharField(choices=[('admin', 'Администратор'), ('moderator', 'Модератор'), ('member', 'Пользователь')], default='member', max_length=9)),
                 ('age', models.PositiveSmallIntegerField()),
                 ('birth_date', models.DateField(validators=[users.models.validate_date])),

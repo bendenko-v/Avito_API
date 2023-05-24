@@ -20,9 +20,24 @@ class UserSerializer(serializers.ModelSerializer):
         )
 
 
+# User email validator (prevents registration from forbidden domains)
+class NotInForbiddenDomainValidator:
+    def __init__(self, forbidden_domains: list):
+        self.forbidden_domains = forbidden_domains
+
+    def __call__(self, value: str):
+        domain = value.split('@')[1]  # Extract the domain from the email
+        if domain in self.forbidden_domains:
+            raise serializers.ValidationError(f"Email with domain '{domain}' is not allowed!")
+
+
 class UserCreateSerializer(serializers.ModelSerializer):
     location = LocationSerializer(required=False, many=True)
     password = serializers.CharField(write_only=True, max_length=120)
+    email = serializers.EmailField(
+        allow_null=False,
+        validators=[NotInForbiddenDomainValidator(['rambler.ru'])],
+    )
 
     class Meta:
         model = User

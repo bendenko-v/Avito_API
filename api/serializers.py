@@ -2,7 +2,6 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
 from api.models import Ads, Category, Selection
-from users.models import User
 from users.serializers import UserSerializer
 
 

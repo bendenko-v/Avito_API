@@ -2,8 +2,6 @@
 
 Django REST framework app like Avito API.
 
-Added tests with pytest. `# in develop #`
-
 ## Usage
 
 Run `docker-compose up -d` in the **db_avito** folder.
@@ -88,3 +86,23 @@ Start Django server to run app.
 - "selection/{id}/": GET - get selection by id
 - "selection/{id}/update/": PATCH - update selection by id (only authorized user)
 - "selection/{id}/delete/": DELETE - delete selection by id (only authorized user)
+
+## Tests
+
+The tests cover the following views:
+
+- Creating an advertisement: 
+  - Method and endpoint: POST '/ads/'
+  - Test case will verify that ad can be created as expected.
+
+- Creating a collection: 
+  - Method and endpoint: POST '/selection/'
+  - Test case will verify that collection can be created as expected.
+
+- Retrieving a list of ads (without filters):
+  - Method and endpoint: GET '/ads/'
+  - Test case will validate the retrieval of a list of ads without any filters applied.
+
+- Retrieving a single advertisement:
+  - Method and endpoint: GET '/ads/<ad_id>/'
+  - Test case will check the retrieval of a specific ad based on its id.

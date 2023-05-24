@@ -1,6 +1,5 @@
 from django.db import models
 from django.core.validators import MinLengthValidator, MinValueValidator
-from rest_framework.exceptions import ValidationError
 
 from users.models import User
 

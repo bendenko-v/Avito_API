@@ -32,19 +32,13 @@ def validate_date(value: datetime.date):
     if value > today - timedelta:
         raise ValidationError('The user must be at least 9 years old!')
 
-# User email validator (prevents registration from forbidden domains)
-def validate_email_domain(value):
-    forbidden_domain = 'rambler.ru'
-    if value.endswith(forbidden_domain):
-        raise ValidationError("Emails from 'rambler.ru' are not allowed.")
-
 
 class User(AbstractUser):
     first_name = models.CharField(max_length=120)
     last_name = models.CharField(max_length=120)
     username = models.CharField(max_length=120, unique=True)
     password = models.CharField(max_length=120)
-    email = models.EmailField(null=False, unique=True, validators=[validate_email_domain])
+    email = models.EmailField(null=False, unique=True)
     role = models.CharField(max_length=9, choices=UserRoles.choices, default=UserRoles.MEMBER)
     age = models.PositiveSmallIntegerField()
     birth_date = models.DateField(null=False, validators=[validate_date])
