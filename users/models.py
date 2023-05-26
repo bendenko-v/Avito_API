@@ -1,5 +1,6 @@
 import datetime
 
+from dateutil.relativedelta import relativedelta
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models import TextChoices
@@ -28,8 +29,8 @@ class UserRoles(TextChoices):
 # User age validator
 def validate_date(value: datetime.date):
     today = datetime.date.today()
-    timedelta = datetime.timedelta(days=365 * 9)
-    if value > today - timedelta:
+    age = relativedelta(today, value).years
+    if age < 9:
         raise ValidationError('The user must be at least 9 years old!')
 
 
